@@ -27,4 +27,4 @@ services:
             - [setContainer, ['@service_container']]
 
     # Aliases
-App\Service\HomePageServiceInterface: '@App\Service\FakeHomePage'
+    App\Service\HomePageServiceInterface: '@App\Service\FakeHomePage'

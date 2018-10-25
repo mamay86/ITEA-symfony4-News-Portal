@@ -9,4 +9,4 @@ contacts:
     methods: [GET]
 
 greeflas_newsletter:
-resource: '@GreeflasNewsletterBundle/Resources/config/routes.yaml'
+    resource: '@GreeflasNewsletterBundle/Resources/config/routes.yaml'

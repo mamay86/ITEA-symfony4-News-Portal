@@ -9,4 +9,4 @@ services:
     exclude: '../../{DependencyInjection,Resources,Dto}'
 
   Greeflas\Bundle\NewsletterBundle\Controller\DefaultController:
-tags: ['controller.service_arguments']
+    tags: ['controller.service_arguments']
