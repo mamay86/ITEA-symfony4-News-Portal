@@ -1,0 +1,12 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Greeflas\Bundle\NewsletterBundle\:
+    resource: '../../*'
+    exclude: '../../{DependencyInjection,Resources,Dto}'
+
+  Greeflas\Bundle\NewsletterBundle\Controller\DefaultController:
+tags: ['controller.service_arguments']

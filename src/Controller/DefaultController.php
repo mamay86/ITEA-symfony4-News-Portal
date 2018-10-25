@@ -1,18 +1,10 @@
 <?php
-
-/*
- * This file is part of the "Project Stat" project.
- * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace App\Controller;
-
+use App\Service\ContactsPageServiceInterface;
 use App\Service\HomePageServiceInterface;
+use App\Service\MessageRecievedMailer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-
 /**
  * Default site controller.
  *
@@ -20,20 +12,31 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class DefaultController extends AbstractController
 {
-    private $service;
-    public function __construct(HomePageServiceInterface $service)
-    {
-        $this->service = $service;
-    }
     /**
      * Home page.
      *
+     * @param HomePageServiceInterface $service
+     *
      * @return Response
      */
-    public function index(): Response
+    public function index(HomePageServiceInterface $service): Response
     {
         return $this->render('default/index.html.twig', [
-            'page' => $this->service->getData(),
+            'page' => $service->getData(),
+        ]);
+    }
+    /**
+     * Contacts page.
+     *
+     * @param ContactsPageServiceInterface $service
+     *
+     * @return Response
+     */
+    public function contacts(ContactsPageServiceInterface $service, MessageRecievedMailer $mailer): Response
+    {
+        $mailer->send('vldmr.kuprienko@gmail.com');
+        return $this->render('default/contacts.html.twig', [
+            'page' => $service->getData(),
         ]);
     }
 }

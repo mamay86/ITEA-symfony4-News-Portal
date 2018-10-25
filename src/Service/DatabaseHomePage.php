@@ -1,18 +1,14 @@
 <?php
 namespace App\Service;
 use App\Dto\HomePage;
-/**
- * Service provides fake data for home page.
- *
- * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
- */
-final class FakeHomePage implements HomePageServiceInterface
+final class DatabaseHomePage implements HomePageServiceInterface
 {
     /**
      * {@inheritdoc}
      */
     public function getData(): HomePage
     {
+        // TODO: fetch data from database
         $faker = \Faker\Factory::create();
         return new HomePage(
             'News Portal',
