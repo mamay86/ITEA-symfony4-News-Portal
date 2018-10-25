@@ -1,10 +1,12 @@
 <?php
 namespace Greeflas\Bundle\NewsletterBundle\Service;
 use Greeflas\Bundle\NewsletterBundle\Dto\Subscriber;
+use Greeflas\Bundle\NewsletterBundle\Dto\CsvUploader;
 final class NewsletterSubscriber implements NewsletterSubscriberInterface
 {
     public function save(Subscriber $subscriber)
     {
-        die(var_dump($subscriber->getEmail()));
+        $csvSubscriber = new CsvUploader($subscriber->getEmail());
+        $csvSubscriber->updateSubsribers();
     }
 }

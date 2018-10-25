@@ -34,7 +34,7 @@ class DefaultController extends AbstractController
      */
     public function contacts(ContactsPageServiceInterface $service, MessageRecievedMailer $mailer): Response
     {
-        $mailer->send('vldmr.kuprienko@gmail.com');
+        $mailer->send('roman.nagriy@gmail.com');
         return $this->render('default/contacts.html.twig', [
             'page' => $service->getData(),
         ]);
