@@ -107,5 +107,4 @@ final class ContactPage
     {
         return $this->formButton;
     }
-
 }

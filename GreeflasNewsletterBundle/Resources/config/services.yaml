@@ -1,5 +1,5 @@
 parameters:
-  app.file_to_load: '../var/file_storage/subscribers.csv'
+  greeflas.storage_file_path: '%kernel.project_dir%/var/file_storage/subscribers.csv'
 
 services:
   _defaults:
@@ -14,7 +14,7 @@ services:
   Greeflas\Bundle\NewsletterBundle\Controller\DefaultController:
     tags: ['controller.service_arguments']
 
-  Greeflas\Bundle\NewsletterBundle\Dto\CsvUploader:
-    class: Greeflas\Bundle\NewsletterBundle\Dto\CsvUploader
-    calls:
-      - [setFileToLoad, ['%app.file_to_load%']]
+  Greeflas\Bundle\NewsletterBundle\Repository\CsvFileRepository:
+    class: Greeflas\Bundle\NewsletterBundle\Repository\CsvFileRepository
+    arguments:
+      - '%greeflas.storage_file_path%'

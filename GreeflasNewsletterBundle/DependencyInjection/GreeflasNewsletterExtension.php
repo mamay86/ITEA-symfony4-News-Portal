@@ -1,9 +1,19 @@
 <?php
+
+/*
+ * This file is part of the "Project Stat" project.
+ * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Greeflas\Bundle\NewsletterBundle\DependencyInjection;
+
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+
 class GreeflasNewsletterExtension extends Extension
 {
     /**
@@ -13,7 +23,7 @@ class GreeflasNewsletterExtension extends Extension
     {
         $loader = new YamlFileLoader(
             $container,
-            new FileLocator( __DIR__ . '/../Resources/config')
+            new FileLocator(__DIR__ . '/../Resources/config')
         );
         $loader->load('services.yaml');
     }

@@ -7,19 +7,11 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Service;
+namespace Greeflas\Bundle\NewsletterBundle\Repository;
 
-/**
- * Base page service contract.
- *
- * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
- */
-interface PageServiceInterface
+use Greeflas\Bundle\NewsletterBundle\Dto\Subscriber;
+
+interface SubscriberRepositoryInterface
 {
-    /**
-     * Gets page data.
-     *
-     * @return mixed
-     */
-    public function getData();
+    public function save(Subscriber $subscriber);
 }
