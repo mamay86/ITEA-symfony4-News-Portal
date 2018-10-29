@@ -24,10 +24,8 @@ final class PostPage implements PostPageServiceInterface
         // TODO: Some static Data
     }
 
-    public function getPost($postID): iterable
+    public function getPost($postID)
     {
-        die();
-        var_dump($this->postRepository->getPost($postID));
-        return $this->postRepository->getPost($postID);
+        return $this->postRepository->getPost($postID)[0];
     }
 }

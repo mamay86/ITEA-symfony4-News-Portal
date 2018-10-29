@@ -61,7 +61,6 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
     public function getPost(int $id): iterable
     {
         return $this->createQueryBuilder('p')
-            ->leftJoin('p.category', 'c')
             ->where('p.id =' . $id)
             ->getQuery()
             ->getResult()

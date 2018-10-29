@@ -13,8 +13,7 @@ interface PostPageServiceInterface extends PageServiceInterface
      *
      * $postID id of the post
      *
-     * @return iterable
      */
-    public function getPost($postID): iterable;
+    public function getPost($postID);
 
 }
