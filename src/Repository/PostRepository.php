@@ -32,6 +32,7 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
         $em->beginTransaction();
         try {
             foreach ($posts as $post) {
+                var_dump($post);
                 $em->persist($post);
             }
             $em->flush();
@@ -49,6 +50,19 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
             ->leftJoin('p.category', 'c')
             ->setMaxResults($count)
             ->orderBy('p.id', 'desc')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPost(int $id): iterable
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.category', 'c')
+            ->where('p.id =' . $id)
             ->getQuery()
             ->getResult()
             ;

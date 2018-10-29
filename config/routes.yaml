@@ -8,5 +8,12 @@ contacts:
     controller: App\Controller\DefaultController::contacts
     methods: [GET]
 
+post_list:
+    path:      /post/{postID}
+    controller: App\Controller\PostController::index
+    methods: [GET]
+    requirements:
+        page: '\d+'
+
 greeflas_newsletter:
     resource: '@GreeflasNewsletterBundle/Resources/config/routes.yaml'

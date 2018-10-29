@@ -28,4 +28,12 @@ interface PostRepositoryInterface
      * @return iterable
      */
     public function getLatest(int $count): iterable;
+    /**
+     * Gets needed post.
+     *
+     * @param int $postID
+     *
+     * @return iterable
+     */
+    public function getPost(int $postID): iterable;
 }
