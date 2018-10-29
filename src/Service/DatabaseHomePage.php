@@ -1,18 +1,24 @@
 <?php
-
-/*
- * This file is part of the "Project Stat" project.
- * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace App\Service;
-
 use App\Dto\HomePage;
-
+use App\Repository\CategoryRepositoryInterface;
+use App\Repository\PostRepositoryInterface;
+/**
+ * Home service that fetch data from database.
+ *
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ */
 final class DatabaseHomePage implements HomePageServiceInterface
 {
+    private $categoryRepository;
+    private $postRepository;
+    public function __construct(
+        CategoryRepositoryInterface $categoryRepository,
+        PostRepositoryInterface $postRepository
+    ) {
+        $this->categoryRepository = $categoryRepository;
+        $this->postRepository = $postRepository;
+    }
     /**
      * {@inheritdoc}
      */
@@ -20,12 +26,25 @@ final class DatabaseHomePage implements HomePageServiceInterface
     {
         // TODO: fetch data from database
         $faker = \Faker\Factory::create();
-
         return new HomePage(
             'News Portal',
             $faker->words(20, true),
             'Read News',
             'Suggest news'
         );
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function getCategories(): iterable
+    {
+        return $this->categoryRepository->findAllCategories();
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function getLatestPosts(): iterable
+    {
+        return $this->postRepository->getLatest(3);
     }
 }

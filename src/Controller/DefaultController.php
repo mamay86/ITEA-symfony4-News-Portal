@@ -1,20 +1,10 @@
 <?php
-
-/*
- * This file is part of the "Project Stat" project.
- * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace App\Controller;
-
 use App\Service\ContactsPageServiceInterface;
 use App\Service\HomePageServiceInterface;
 use App\Service\MessageRecievedMailer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-
 /**
  * Default site controller.
  *
@@ -33,6 +23,8 @@ class DefaultController extends AbstractController
     {
         return $this->render('default/index.html.twig', [
             'page' => $service->getData(),
+            'categories' => $service->getCategories(),
+            'latest_posts' => $service->getLatestPosts(),
         ]);
     }
     /**
@@ -44,8 +36,7 @@ class DefaultController extends AbstractController
      */
     public function contacts(ContactsPageServiceInterface $service, MessageRecievedMailer $mailer): Response
     {
-        $mailer->send('roman.nagriy@gmail.com');
-
+        $mailer->send('vldmr.kuprienko@gmail.com');
         return $this->render('default/contacts.html.twig', [
             'page' => $service->getData(),
         ]);

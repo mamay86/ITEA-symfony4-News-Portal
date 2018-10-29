@@ -1,16 +1,6 @@
 <?php
-
-/*
- * This file is part of the "Project Stat" project.
- * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace App\Service;
-
 use App\Dto\HomePage;
-
 /**
  * Contract for home page service.
  *
@@ -24,4 +14,16 @@ interface HomePageServiceInterface extends PageServiceInterface
      * @return HomePage
      */
     public function getData(): HomePage;
+    /**
+     * Gets post categories.
+     *
+     * @return iterable
+     */
+    public function getCategories(): iterable;
+    /**
+     * Gets latest posts.
+     *
+     * @return iterable
+     */
+    public function getLatestPosts(): iterable;
 }
