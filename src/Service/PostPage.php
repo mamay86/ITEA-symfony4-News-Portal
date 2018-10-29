@@ -26,6 +26,14 @@ final class PostPage implements PostPageServiceInterface
 
     public function getPost($postID)
     {
+        /**
+         * Realization for post
+         */
+        //return $this->postRepository->find($postID);
+
+        /**
+         * Same realization for few posts by category
+         */
         return $this->postRepository->getPost($postID)[0];
     }
 }
