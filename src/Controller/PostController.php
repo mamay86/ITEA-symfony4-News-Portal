@@ -1,26 +1,31 @@
 <?php
 namespace App\Controller;
-use App\Service\PostPageServiceInterface;
+use App\Service\Post\PostServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 /**
- * Post controller.
+ * Controller provides post pages.
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-class PostController extends AbstractController
+final class PostController extends AbstractController
 {
+    private $service;
+    public function __construct(PostServiceInterface $service)
+    {
+        $this->service = $service;
+    }
     /**
-     * Home page.
+     * View article by ID.
      *
-     * @param PostPageServiceInterface $service
+     * @param int $id
      *
      * @return Response
      */
-    public function index(PostPageServiceInterface $post, $postID): Response
+    public function view(int $id): Response
     {
-        return $this->render('post/index.html.twig', [
-            'post' => $post->getPost($postID)
+        return $this->render('post/view.html.twig', [
+            'post' => $this->service->findOne($id),
         ]);
     }
 }

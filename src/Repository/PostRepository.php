@@ -58,12 +58,8 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
     /**
      * {@inheritdoc}
      */
-    public function getPost(int $id): iterable
+    public function findOne(int $id): ?Post
     {
-        return $this->createQueryBuilder('p')
-            ->where('p.id =' . $id)
-            ->getQuery()
-            ->getResult()
-            ;
+        return $this->find($id);
     }
 }

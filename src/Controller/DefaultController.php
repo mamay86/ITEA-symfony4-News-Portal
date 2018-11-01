@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-class DefaultController extends AbstractController
+final class DefaultController extends AbstractController
 {
     /**
      * Home page.

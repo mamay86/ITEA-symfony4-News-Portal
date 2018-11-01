@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block css %}
+    {{ parent() }}
+    <link href="/css/post.css" rel="stylesheet">
+{% endblock %}
+{% block main %}
+    <main role="main">
+        <article class="post">
+            <a href="#" class="category-link">Back to "{{ post.category.title }}"</a>
+            <h1>{{ post.title }}</h1>
+            <time>{{ post.createdAt | date }}</time>
+            <div class="clearfix"></div>
+            <p>{{ post.body }}</p>
+        </article>
+    </main>
+{% endblock %}

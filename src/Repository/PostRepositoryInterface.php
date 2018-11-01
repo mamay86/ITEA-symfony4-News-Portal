@@ -29,11 +29,11 @@ interface PostRepositoryInterface
      */
     public function getLatest(int $count): iterable;
     /**
-     * Gets needed post.
+     * Find one post by ID.
      *
-     * @param int $postID
+     * @param int $id
      *
-     * @return iterable
+     * @return null|Post
      */
-    public function getPost(int $postID): iterable;
+    public function findOne(int $id): ?Post;
 }
