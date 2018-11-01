@@ -26,5 +26,14 @@ services:
             #            - [setSupportEmail, ['%app.support_mail%']]
             - [setContainer, ['@service_container']]
 
+    App\Controller\Api\PostController:
+        class: App\Controller\Api\PostController
+        arguments:
+            - '@App\Service\Post\ApiPostService'
+    App\Controller\PostController:
+        class: App\Controller\PostController:
+        arguments:
+            - '@App\Service\Post\PostService'
+
     # Aliases
     App\Service\HomePageServiceInterface: '@App\Service\DatabaseHomePage'

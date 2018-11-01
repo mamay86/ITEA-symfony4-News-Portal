@@ -22,4 +22,12 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
     {
         return $this->findAll();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findBySlug(string $slug): ?Category
+    {
+        return $this->findOneBy(['title' => $slug]);
+    }
 }

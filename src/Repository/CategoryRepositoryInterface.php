@@ -13,4 +13,13 @@ interface CategoryRepositoryInterface
      * @return iterable
      */
     public function findAllCategories(): iterable;
+
+    /**
+     * Finds category by slug.
+     *
+     * @param string $slug
+     *
+     * @return mixed
+     */
+    public function findBySlug(string $slug);
 }
