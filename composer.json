@@ -13,6 +13,7 @@
         "symfony/flex": "^1.1",
         "symfony/form": "*",
         "symfony/framework-bundle": "*",
+        "symfony/http-foundation": "*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "*",
         "symfony/process": "*",
@@ -51,7 +52,8 @@
     "autoload-dev": {
         "psr-4": {
             "App\\Tests\\": "tests/",
-            "Greeflas\\Bundle\\NewsletterBundle\\": "GreeflasNewsletterBundle/"
+            "Greeflas\\Bundle\\NewsletterBundle\\": "GreeflasNewsletterBundle/",
+            "Mamay\\Bundle\\ScrapingBundle\\": "MamayScrapingBundle/"
         }
     },
     "replace": {

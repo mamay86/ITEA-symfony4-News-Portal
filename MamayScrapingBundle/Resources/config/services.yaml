@@ -1,0 +1,18 @@
+parameters:
+  mamay.victim: 'https://www.askgamblers.com/'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Mamay\Bundle\ScrapingBundle\:
+    resource: '../../*'
+    exclude: '../../{DependencyInjection,Resources,Dto}'
+
+  Mamay\Bundle\ScrapingBundle\Controller\DefaultController:
+    class: Mamay\Bundle\ScrapingBundle\Controller\DefaultController
+    arguments:
+        - '%mamay.victim%'
+    tags: ['controller.service_arguments']

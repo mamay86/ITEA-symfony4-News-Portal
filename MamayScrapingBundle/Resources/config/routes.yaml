@@ -1,0 +1,4 @@
+mamay_scraping:
+  path: /scraping
+  controller: Mamay\Bundle\ScrapingBundle\Controller\DefaultController::scraping
+  methods: [GET, POST]

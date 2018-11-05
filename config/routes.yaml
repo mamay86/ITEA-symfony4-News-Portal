@@ -15,3 +15,6 @@ post_view:
 
 greeflas_newsletter:
     resource: '@GreeflasNewsletterBundle/Resources/config/routes.yaml'
+
+mamay_scraping:
+    resource: '@MamayScrapingBundle/Resources/config/routes.yaml'
