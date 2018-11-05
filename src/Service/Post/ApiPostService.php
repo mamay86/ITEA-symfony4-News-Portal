@@ -1,8 +1,17 @@
 <?php
+
+/*
+ * This file is part of the "Project Stat" project.
+ * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Service\Post;
-use App\Api\Resource\Post;
-use App\Repository\CategoryRepositoryInterface;
-use App\Repository\PostRepositoryInterface;
+
+use App\Api\Document\Document;
+use App\Api\Document\DocumentBuilder;
+use App\Api\Transformer\PostResourceTransformer;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -12,41 +21,35 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 final class ApiPostService extends PostService implements PostServiceInterface
 {
-    private $categoryRepository;
-    public function __construct(
-        CategoryRepositoryInterface $categoryRepository,
-        PostRepositoryInterface $postRepository
-    ) {
-        parent::__construct($postRepository);
-        $this->categoryRepository = $categoryRepository;
-    }
+
     /**
      * {@inheritdoc}
      */
-    public function findOne(int $id): Post
+    public function findOne(int $id): Document
     {
         $post = parent::findOne($id);
-        return $this->entityToResource($post);
+
+        return DocumentBuilder::getInstance(new PostResourceTransformer())
+            ->setEntity($post)
+            ->getDocument()
+            ;
     }
     /**
      * {@inheritdoc}
      */
-    public function create(array $data): Post
+    public function create(array $data): Document
     {
-        $attributes = $data['attributes'];
-        // TODO: move create entity logic to PostService
-        $category = $this->categoryRepository->findBySlug($attributes['category']);
-        $post = new \App\Entity\Post();
-        $post->setCategory($category);
-        $post->setTitle($attributes['title']);
-        $post->setBody($attributes['content']);
-        $this->postRepository->save($post);
-        return $this->entityToResource($post);
+        $post = parent::create($data['attributes']);
+
+        return DocumentBuilder::getInstance(new PostResourceTransformer())
+            ->setEntity($post)
+            ->getDocument()
+            ;
     }
-    /**
+    /*
      * @todo Move this logic to resource transformer class
      */
-    private function entityToResource(\App\Entity\Post $entity): Post
+    /*private function entityToResource(\App\Entity\Post $entity): Post
     {
         $resource = new Post();
         $resource->setId($entity->getId());
@@ -56,12 +59,12 @@ final class ApiPostService extends PostService implements PostServiceInterface
         $resource->setCreatedAt($entity->getCreatedAt());
         $resource->setUpdatedAt($entity->getUpdatedAt());
         return $resource;
-    }
-    /**
+    }*/
+    /*
      * {@inheritdoc}
      */
 
-    public function edit(int $id, array $data): Post
+    /*public function edit(int $id, array $data): Post
     {
         $post = $this->postRepository->findOne($id);
         if (!$post) {
@@ -71,13 +74,13 @@ final class ApiPostService extends PostService implements PostServiceInterface
         $post->setBody($data['content']);
         $this->postRepository->save($post);
         return $this->entityToResource($post);
-    }
+    }*/
 
-    /**
+    /*
      * {@inheritdoc}
      */
 
-    public function getAll()
+    /*public function getAll()
     {
         $resPosts = [];
         $posts = parent::getAll();
@@ -85,5 +88,5 @@ final class ApiPostService extends PostService implements PostServiceInterface
             $resPosts[] = $this->entityToResource($post);
         }
         return $resPosts;
-    }
+    }*/
 }

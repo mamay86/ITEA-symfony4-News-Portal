@@ -1,8 +1,18 @@
 <?php
+
+/*
+ * This file is part of the "Project Stat" project.
+ * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
@@ -45,6 +55,7 @@ class Category
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
     public function getCreatedAt(): ?\DateTimeInterface
@@ -54,6 +65,7 @@ class Category
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
         return $this;
     }
     public function getUpdatedAt(): ?\DateTimeInterface
@@ -63,6 +75,7 @@ class Category
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
         return $this;
     }
     public function getPosts(): Collection

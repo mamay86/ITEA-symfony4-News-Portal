@@ -1,12 +1,22 @@
 <?php
+
+/*
+ * This file is part of the "Project Stat" project.
+ * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Repository;
+
 use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\ORMException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+
 /**
- * @method Post|null find($id, $lockMode = null, $lockVersion = null)
- * @method Post|null findOneBy(array $criteria, array $orderBy = null)
+ * @method null|Post find($id, $lockMode = null, $lockVersion = null)
+ * @method null|Post findOneBy(array $criteria, array $orderBy = null)
  * @method Post[]    findAll()
  * @method Post[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
@@ -34,7 +44,7 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
         $em->beginTransaction();
         try {
             foreach ($posts as $post) {
-                var_dump($post);
+                \var_dump($post);
                 $em->persist($post);
             }
             $em->flush();

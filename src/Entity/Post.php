@@ -1,10 +1,21 @@
 <?php
+
+/*
+ * This file is part of the "Project Stat" project.
+ * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Entity;
+
+use App\Api\Entity\EntityInterface;
 use Doctrine\ORM\Mapping as ORM;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  */
-class Post
+class Post implements EntityInterface
 {
     /**
      * @ORM\Id()
@@ -57,6 +68,7 @@ class Post
     public function setCategoryId(int $categoryId): self
     {
         $this->categoryId = $categoryId;
+
         return $this;
     }
     public function getTitle(): ?string
@@ -66,6 +78,7 @@ class Post
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
     public function getBody(): ?string
@@ -75,6 +88,7 @@ class Post
     public function setBody(string $body): self
     {
         $this->body = $body;
+
         return $this;
     }
     public function getImage(): ?string
@@ -84,6 +98,7 @@ class Post
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
         return $this;
     }
     public function getCreatedAt(): ?\DateTimeInterface
@@ -93,6 +108,7 @@ class Post
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
     public function getUpdatedAt(): ?\DateTimeInterface
@@ -102,9 +118,10 @@ class Post
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
-    public function getCategory()
+    public function getCategory(): Category
     {
         return $this->category;
     }

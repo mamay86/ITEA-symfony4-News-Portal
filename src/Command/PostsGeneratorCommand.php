@@ -1,11 +1,21 @@
 <?php
+
+/*
+ * This file is part of the "Project Stat" project.
+ * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Command;
+
 use App\Entity\Post;
 use App\Repository\PostRepositoryInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
 /**
  * Command for generating fake posts for development purposes.
  *
@@ -43,6 +53,7 @@ final class PostsGeneratorCommand extends Command
         $count = $input->getArgument('count');
         $faker = \Faker\Factory::create();
         $posts = [];
+
         for ($i = 0; $i < $count; $i++) {
             $post = new Post();
             $post

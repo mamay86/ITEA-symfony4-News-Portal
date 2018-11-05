@@ -7,28 +7,19 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Repository;
+namespace App\Api\Entity;
 
 /**
- * Contract for category repository.
+ * Contract for entities.
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-interface CategoryRepositoryInterface
+interface EntityInterface
 {
     /**
-     * Finds all categories in storage.
-     *
-     * @return iterable
-     */
-    public function findAllCategories(): iterable;
-
-    /**
-     * Finds category by slug.
-     *
-     * @param string $slug
+     * Gets unique ID of entity.
      *
      * @return mixed
      */
-    public function findBySlug(string $slug);
+    public function getId();
 }
