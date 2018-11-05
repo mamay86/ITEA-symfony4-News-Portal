@@ -31,7 +31,9 @@ class DefaultController extends AbstractController
             // $file stores the uploaded PDF file
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $file->getFile();
+            echo "<pre>";
             var_dump($file);
+            echo "</pre>";
         }
 
         return $this->render('@MamayScraping/index.html.twig', array(

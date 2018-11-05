@@ -16,8 +16,8 @@ class Files
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-     * @Assert\File(mimeTypes={ "application/pdf" })
+     * @Assert\NotBlank(message="Please, upload the ODS file.")
+     * @Assert\File(mimeTypes={ "application/vnd.oasis.opendocument.spreadsheet" })
      */
     private $file;
 
@@ -28,7 +28,7 @@ class Files
 
     public function setFile($file)
     {
-        $this->brochure = $file;
+        $this->file = $file;
 
         return $this;
     }
