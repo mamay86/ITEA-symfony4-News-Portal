@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e5ef8bab9bb4ab8b6624ee1df194ecf",
+    "content-hash": "e88ae9d81544265264fa7f96c222481f",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -6113,7 +6113,7 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v4.1.6",
+            "version": "v4.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
