@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the "Project Stat" project.
+ * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Repository;
 
 use App\Entity\CasinoHTML;
@@ -7,44 +14,25 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method CasinoHTML|null find($id, $lockMode = null, $lockVersion = null)
- * @method CasinoHTML|null findOneBy(array $criteria, array $orderBy = null)
+ * @method null|CasinoHTML find($id, $lockMode = null, $lockVersion = null)
+ * @method null|CasinoHTML findOneBy(array $criteria, array $orderBy = null)
  * @method CasinoHTML[]    findAll()
  * @method CasinoHTML[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CasinoHTMLRepository extends ServiceEntityRepository
+class CasinoHTMLRepository extends ServiceEntityRepository implements CasinoHTMLRepositoryInterface
 {
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, CasinoHTML::class);
     }
 
-//    /**
-//     * @return CasinoHTML[] Returns an array of CasinoHTML objects
-//     */
-    /*
-    public function findByExampleField($value)
+    /**
+     * {@inheritdoc}
+     */
+    public function save(CasinoHTML $html): void
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $em = $this->getEntityManager();
+        $em->persist($html);
+        $em->flush();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?CasinoHTML
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

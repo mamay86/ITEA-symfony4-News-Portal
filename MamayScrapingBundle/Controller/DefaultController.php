@@ -1,26 +1,26 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: roma
- * Date: 05.11.18
- * Time: 13:45
+
+/*
+ * This file is part of the "Project Stat" project.
+ * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Mamay\Bundle\ScrapingBundle\Controller;
 
+use Mamay\Bundle\ScrapingBundle\Service\Reader;
+use Mamay\Bundle\ScrapingBundle\Service\SourceVictim;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 use Mamay\Bundle\ScrapingBundle\Entity\Files;
 use Mamay\Bundle\ScrapingBundle\Form\FilesType;
-use PhpOffice\PhpSpreadsheet\Reader\Ods;
-use GuzzleHttp\Client;
 
 class DefaultController extends AbstractController
 {
     /**
      * @param Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function scraping(Request $request)
@@ -30,41 +30,31 @@ class DefaultController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $file stores the uploaded PDF file
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            /**
+             * $file stores the uploaded ods file
+             *
+             * @var Symfony\Component\HttpFoundation\File\UploadedFile
+             */
             $file = $file->getFile();
 
-            $links = [];
-            $reader = new Ods();
-            $spreadsheet = $reader->load($file);
+            /**
+             * ODS Reader
+             * Use PhpSpreadsheet
+             */
+            $reader = new Reader($file);
+            $reader->getResults();
+            $links = $reader->getList();
 
-            $worksheet = $spreadsheet->getActiveSheet();
-
-            foreach ($worksheet->getRowIterator() as $row) {
-                $cellIterator = $row->getCellIterator();
-                $cellIterator->setIterateOnlyExistingCells(FALSE); // This loops through all cells,
-                //    even if a cell value is not set.
-                // By default, only cells that have a value
-                //    set will be iterated.
-                foreach ($cellIterator as $cell) {
-                        $links[] = $cell->getValue();
-                }
-            }
-
-            foreach ($links as $link) {
-                $client = new Client();
-                $response = $client->request('GET', $link);
-
-                $body = $response->getBody();
-                echo $body;
-
-                die();
-            }
+            /**
+             * Getting HTML source and put in DB
+             * Use GuzzleHttp
+             */
+            $source = new SourceVictim($links);
+            $source->execute();
         }
 
-        return $this->render('@MamayScraping/index.html.twig', array(
+        return $this->render('@MamayScraping/index.html.twig', [
             'form' => $form->createView(),
-        ));
-        //return $this->render('@MamayScraping/index.html.twig', []);
+        ]);
     }
 }

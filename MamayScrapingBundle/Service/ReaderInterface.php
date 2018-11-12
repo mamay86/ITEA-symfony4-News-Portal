@@ -7,10 +7,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Mamay\Bundle\ScrapingBundle;
+namespace Mamay\Bundle\ScrapingBundle\Service;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-
-class MamayScrapingBundle extends Bundle
+interface ReaderInterface
 {
+    public function getResults(): array;
+
+    public function getList(): array;
 }

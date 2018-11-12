@@ -1,9 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: roma
- * Date: 05.11.18
- * Time: 17:04
+
+/*
+ * This file is part of the "Project Stat" project.
+ * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Mamay\Bundle\ScrapingBundle\Form;
@@ -19,15 +20,15 @@ class FilesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('file', FileType::class, array('label' => 'Choose file...'))
-                ->add('save', SubmitType::class, array('attr' => array('class' => 'save'),))
+        $builder->add('file', FileType::class, ['label' => 'Choose file...'])
+                ->add('save', SubmitType::class, ['attr' => ['class' => 'save']])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => Files::class,
-        ));
+        ]);
     }
 }

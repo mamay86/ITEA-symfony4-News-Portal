@@ -1,9 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: roma
- * Date: 05.11.18
- * Time: 17:01
+
+/*
+ * This file is part of the "Project Stat" project.
+ * (c) Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Mamay\Bundle\ScrapingBundle\Entity;
