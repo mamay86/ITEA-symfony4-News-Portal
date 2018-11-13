@@ -35,4 +35,12 @@ class CasinoHTMLRepository extends ServiceEntityRepository implements CasinoHTML
         $em->persist($html);
         $em->flush();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findAllHTML(): iterable
+    {
+        return $this->findAll();
+    }
 }

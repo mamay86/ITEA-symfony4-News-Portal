@@ -31,7 +31,7 @@ class CasinoHTML
     /**
      * @ORM\Column(type="blob")
      */
-    private $html;
+    public $html;
 
     /**
      * @ORM\Column(type="datetime")

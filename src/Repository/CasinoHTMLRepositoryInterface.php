@@ -24,4 +24,6 @@ interface CasinoHTMLRepositoryInterface
      * @param CasinoHTML $html
      */
     public function save(CasinoHTML $html): void;
+    
+    public function findAllHTML(): iterable;
 }

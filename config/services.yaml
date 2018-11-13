@@ -31,9 +31,13 @@ services:
         arguments:
             - '@App\Service\Post\ApiPostService'
     App\Controller\PostController:
-        class: App\Controller\PostController:
+        class: App\Controller\PostController
         arguments:
             - '@App\Service\Post\PostService'
+    App\Controller\CasinoController:
+        class: App\Controller\CasinoController
+        arguments:
+            - '@App\Service\Casino\CasinoService'
 
     # Aliases
     App\Service\HomePageServiceInterface: '@App\Service\DatabaseHomePage'
