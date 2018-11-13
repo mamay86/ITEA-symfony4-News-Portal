@@ -11,5 +11,5 @@ namespace Mamay\Bundle\ScrapingBundle\Service;
 
 interface SourceVictimInterface
 {
-    public function execute(): void;
+    public function execute(array $links): void;
 }

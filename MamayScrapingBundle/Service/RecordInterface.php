@@ -11,5 +11,5 @@ namespace Mamay\Bundle\ScrapingBundle\Service;
 
 interface RecordInterface
 {
-    public function add(array $data);
+    public function add(array $data): void;
 }

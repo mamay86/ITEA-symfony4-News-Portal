@@ -13,23 +13,22 @@ use PhpOffice\PhpSpreadsheet\Reader\Ods;
 
 class Reader implements ReaderInterface
 {
-    private $list;
-    private $file;
+    private $list = [];
 
-    public function __construct(\Symfony\Component\HttpFoundation\File\UploadedFile $file)
-    {
-        $this->file = $file;
-    }
-
-    public function getList(): array
-    {
-        return $this->list;
-    }
-
-    public function getResults(): array
+    /**
+     * Getting list of the victim links from ods file
+     *
+     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     *
+     * @return array
+     */
+    public function getList(\Symfony\Component\HttpFoundation\File\UploadedFile $file): array
     {
         $reader = new Ods();
-        $spreadsheet = $reader->load($this->file);
+        $spreadsheet = $reader->load($file);
 
         $worksheet = $spreadsheet->getActiveSheet();
 

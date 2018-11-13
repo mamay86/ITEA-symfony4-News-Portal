@@ -13,24 +13,29 @@ use GuzzleHttp\Client;
 
 class SourceVictim implements SourceVictimInterface
 {
-    private $victimLinks = [];
-
-    public function __construct($victimLinks)
+    private $repositoryRecord;
+    public function __construct(RecordInterface $repositoryRecord)
     {
-        $this->victimLinks = $victimLinks;
+        $this->repositoryRecord = $repositoryRecord;
     }
 
-    public function execute(): void
+    /**
+     * Get html code and put in DB
+     *
+     * @param array $links
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function execute(array $links): void
     {
-        foreach ($this->victimLinks as $link) {
+        foreach ($links as $link) {
             $client = new Client();
             $response = $client->request('GET', $link);
 
             if (200 == $response->getStatusCode()) {
                 $body = $response->getBody();
 
-                $result = new Record();
-                $result->add([
+                $this->repositoryRecord->add([
                     'link' => $link,
                     'html' => $body,
                 ]);

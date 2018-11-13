@@ -11,7 +11,5 @@ namespace Mamay\Bundle\ScrapingBundle\Service;
 
 interface ReaderInterface
 {
-    public function getResults(): array;
-
-    public function getList(): array;
+    public function getList(\Symfony\Component\HttpFoundation\File\UploadedFile $file): array;
 }

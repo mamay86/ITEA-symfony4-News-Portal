@@ -20,11 +20,16 @@ final class Record implements RecordInterface
         $this->repository = $repository;
     }
 
-    public function add(array $data)
+    /**
+     * Create new record in html result table
+     *
+     * @param array $data
+     */
+    public function add(array $data): void
     {
         $result = new CasinoHTML();
-        $result->setTitle($data['link']);
-        $result->setBody($data['html']);
+        $result->setLink($data['link']);
+        $result->setHTML($data['html']);
         $this->repository->save($result);
     }
 }
