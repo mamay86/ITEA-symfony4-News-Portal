@@ -12,6 +12,7 @@ namespace App\Service\Casino;
 use App\Entity\Casino;
 use App\Repository\CasinoHTMLRepositoryInterface;
 use App\Repository\CasinoRepositoryInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CasinoService implements CasinoServiceInterface
 {
@@ -71,5 +72,18 @@ class CasinoService implements CasinoServiceInterface
             $casinos[] = $casino;
         }
         $this->casinoRepository->saveAll($casinos);
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function findOne(int $id)
+    {
+        $casino = $this->casinoRepository->findOne($id);
+
+        if (null === $casino) {
+            throw new NotFoundHttpException(\sprintf('Casino with ID %d not found', $id));
+        }
+
+        return $casino;
     }
 }

@@ -43,4 +43,23 @@ class CasinoRepository extends ServiceEntityRepository implements CasinoReposito
             $em->rollback();
         }
     }
+    /**
+     * {@inheritdoc}
+     */
+    public function findOne(int $id): ?Casino
+    {
+        return $this->find($id);
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function getLatest(int $count = 20): iterable
+    {
+        return $this->createQueryBuilder('p')
+            ->setMaxResults($count)
+            ->orderBy('p.id', 'desc')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

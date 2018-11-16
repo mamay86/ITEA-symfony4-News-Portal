@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ITEA Hack Tool{% endblock %}
+
+{% block main %}
+    <main role="main">
+        <div class="container">
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Rating</th>
+                    <th>Link</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for casino in casinos %}
+                    <tr>
+                        <td>{{ casino.name }}</td>
+                        <td>{{ casino.rating }}</td>
+
+                        <td><a href="{{ path('casino_view', {'id': casino.id}) }}">Link</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+{% endblock %}

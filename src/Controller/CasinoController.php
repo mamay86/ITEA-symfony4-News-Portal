@@ -28,9 +28,22 @@ final class CasinoController extends AbstractController
             \sprintf('Error in proccess. Detail:', $e->getMessage());
         }
 
-        return $this->render('casino/view.html.twig', [
+        return $this->render('casino/parse.html.twig', [
             'pagesCount' => $result['countHTMLAdded'],
             'casinosCount' => $result['countCasinosAdded'],
+        ]);
+    }
+    /**
+     * View casino by ID.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function view(CasinoServiceInterface $service, int $id): Response
+    {
+        return $this->render('casino/view.html.twig', [
+            'casino' => $service->findOne($id),
         ]);
     }
 }

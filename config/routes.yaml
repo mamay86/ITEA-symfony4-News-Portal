@@ -18,6 +18,11 @@ parse:
     controller: App\Controller\CasinoController::parse
     methods: [GET]
 
+casino_view:
+    path: /casino/view/{id}
+    controller: App\Controller\CasinoController::view
+    methods: [GET]
+
 greeflas_newsletter:
     resource: '@GreeflasNewsletterBundle/Resources/config/routes.yaml'
 

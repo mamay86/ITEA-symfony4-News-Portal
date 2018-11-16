@@ -40,4 +40,4 @@ services:
             - '@App\Service\Casino\CasinoService'
 
     # Aliases
-    App\Service\HomePageServiceInterface: '@App\Service\DatabaseHomePage'
+    App\Service\HomePageServiceInterface: '@App\Service\CasinoHomePage'

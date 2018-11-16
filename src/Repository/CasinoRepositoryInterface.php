@@ -9,7 +9,13 @@
 
 namespace App\Repository;
 
+use App\Entity\Casino;
+
 interface CasinoRepositoryInterface
 {
     public function saveAll(iterable $casinos): void;
+
+    public function findOne(int $id): ?Casino;
+
+    public function getLatest(int $count = 20): iterable;
 }
